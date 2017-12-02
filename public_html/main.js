@@ -1,8 +1,14 @@
 
 function App($scope) {
   $scope.placeholder = 4;
+  $scope.loader = false;
+  $scope.currentURL = "informa.com"
 
   
+
+  $scope.getCompanyData = function() {
+    $scope.loader = true;
+  };
 
   function doSearch() {
 	ajax.open("GET", "https://autocomplete.clearbit.com/v1/companies/suggest?query=:" + input.value.trim(), true);
