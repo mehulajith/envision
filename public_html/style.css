@@ -30,6 +30,11 @@ html {
   margin-top: 10px;
 }
 
+.btn-outline-secondary {
+  margin-left: 43%;
+  margin-top: 2%;
+}
+
 .loader{
   height: 100px;
   width: 20%;
