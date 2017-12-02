@@ -32,19 +32,19 @@
       <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
           <li class="nav-item">
-            <a class="nav-link " href="#" ng-click="companyTab()"><b>Company</b></a>
+            <a class="nav-link " href="#" ng-click="companyTab()" style="color:#007BFF"><b>Company</b></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="#" ng-click="fundingTab()"><b>Funding</b></a>
+            <a class="nav-link " href="#" ng-click="fundingTab()" style="color:#007BFF"><b>Funding</b></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="#" ng-click="marketTab()"><b>Market</b></a>
+            <a class="nav-link " href="#" ng-click="marketTab()" style="color:#007BFF"><b>Market</b></a>
           </li>
         </ul>
       </div>
       <div class="card-body" ng-show="Company">
-        <img src="{{logo_url}}" ng-show="logo_url" width="100px" style="margin-bottom: 15px;">
-        <h5 class="card-title" style="color: #563fff">{{company}}</h5>
+        <img class="compLogo" src="{{logo_url}}" ng-show="logo_url" width="100px" style="margin-bottom: 15px;">
+        <h5 class="card-title" style="color: #007BFF;">{{company}}</h5>
 
         <h5 class="card-title">Founded in</h5>
         <p class="card-text">{{founded}}</p>
@@ -72,6 +72,9 @@
       <div class="card-body" ng-show="Market">
         <h5 class="card-title"> {{company}} Industry/Tech Info</h5>
         <p class="card-text">{{industries}}</p>
+
+        <h5 class="card-title"> {{company}} Hype Score</h5>
+        <p class="card-text">{{yr17}}</p>
 
         <canvas id="line-chart" width="800" height="450"></canvas>
         <script>
