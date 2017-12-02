@@ -89,7 +89,7 @@ function App($scope) {
  $.ajaxSetup({
   headers : {
     '_Token' : '2D21101015EE4060AD28DB78180FC1D7',
-    'Access-Control-Allow-Origin':
+    'Access-Control-Allow-Origin': 'https://yhaxzzz.herokuapp.com'
   }
 });
 
