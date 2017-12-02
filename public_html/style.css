@@ -32,6 +32,10 @@ html {
   vertical-align: top;
 }
 
+.card {
+  margin-top: 10px;
+}
+
 /*
   Set the color of the icon
 */
