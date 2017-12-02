@@ -86,22 +86,24 @@ function App($scope) {
       $scope.avgYearlyFunding = avgFund.toFixed(2);
       $scope.industries = data.industries;
       $scope.$apply();
+      marketNews('saas');
     });
 
  }
 
-function marketNews() {
-  $.getJSON('https://newsapi.org/v2/everything?q='+ $scope.industryNews + '&from=2012-01-01&to=2012-31-12&sortBy=popularity&apiKey=96e8a4ea89e24a5aa48ed02ff80f7a2a', function(news) {
+function marketNews(industry) {
+  $.getJSON('https://newsapi.org/v2/everything?q='+ industry + '&from=2017-08-11&to=2017-11-11&sortBy=popularity&apiKey=96e8a4ea89e24a5aa48ed02ff80f7a2a', function(news) {
     console.log(news);
-    $scope.industryNews = news.articles[];
-
+    // $scope.industryNews = news.articles[];
+    marketNewsAnalysis(news.articles);
   });
 }
 
-function marketNewsAnalysis() {
-  $.post('https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21', function(data) {
-
-  })
+function marketNewsAnalysis(data) {
+  console.log('ibm');
+  $.post('https://yugnoats:Yhack553-@gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21', data, function(response) {
+    console.log(response);
+  }, 'json');
 }
 
 };
