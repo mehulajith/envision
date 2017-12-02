@@ -3,22 +3,43 @@ function App($scope) {
  $scope.currentURL = "yooo"
  $scope.loader = false;
 
+ // Company data
+ $scope.company
+ $scope.description
+ $scope.employeesNow
+ $scope.employees6moAgo
+ $scope.totalfunding
+ $scope.founded
+ $scope.industries
+
+ //TabCategories
+ $scope.Company = true;
+ $scope.Funding = false;
+ $scope.Market = false;
+
  $scope.getCompanyData = function() {
    $scope.loader = true;
    comanyInfo()
  };
 
+// Tabs
+ $scope.companyTab = function() {
+   
+ };
+ $scope.fundingTab = function() {
+
+ };
+ $scope.marketTab = function() {
+
+ };
+
+
  function comanyInfo() {
-     ajax.open("GET", "https://api.mattermark.com/domains/glide.com/companies?key=34cc41d72b44b5c8ed19ee44361829eeb2b53edcdb030731fef654f6048d26d8", true);
-         ajax.onload = function() {
-             var sHTML = '';
-             console.log(ajax.responseText);
-             JSON.parse(ajax.responseText).map(function(i) {
-                console.log(i);
-             });
-             // result.innerHTML = sHTML;
-        };
-    ajax.send();
+
+    $.getJSON('https://api.mattermark.com/domains/glide.com/companies?key=34cc41d72b44b5c8ed19ee44361829eeb2b53edcdb030731fef654f6048d26d8', function(data) {
+      console.log(data);
+    });
+
  }
 
  // function doSearch() {
