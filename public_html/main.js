@@ -9,6 +9,7 @@ function App($scope) {
  $scope.employeesNow = 0;
  $scope.employees6moAgo = 0;
  $scope.totalfunding = 0;
+ $scope.lastfundingdate = 0;
  $scope.founded = 0;
  $scope.industries = '';
 
@@ -45,6 +46,7 @@ function App($scope) {
       $scope.employeesNow = data.employees;
       $scope.employees6moAgo = data.employees_6_months_ago;
       $scope.totalfunding = data.total_funding;
+      $scope.lastfundingdate = data.last_funding_date;
       $scope.founded = data.est_founding_date;
       $scope.industries = data.industries;
     });

@@ -60,19 +60,32 @@
         </ul>
       </div>
       <div class="card-body" ng-show="Company">
-        <h5 class="card-title">Company Data</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <h5 class="card-title">Company Name</h5>
+        <p class="card-text">{{company}}</p>
+
+        <h5 class="card-title">Date Established</h5>
+        <p class="card-text">{{founded}}</p>
+
+        <h5 class="card-title">Description</h5>
+        <p class="card-text">{{description}}</p>
+
+        <h5 class="card-title">Employee Data</h5>
+        <p class="card-text">{{employees6moAgo}}</p>
+        <p class="card-text">{{employeesNow}}</p>
+
       </div>
       <div class="card-body" ng-show="Funding">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <h5 class="card-title">Funding</h5>
+        <p class="card-text">{{totalfunding}}</p>
+
+        <h5 class="card-title">Latest Funding</h5>
+        <p class="card-text">{{lastfundingdate}}</p>
+
       </div>
       <div class="card-body" ng-show="Market">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <h5 class="card-title">Industry Info</h5>
+        <p class="card-text">{{industries}}</p>
+
       </div>
     </div>
   </div>
