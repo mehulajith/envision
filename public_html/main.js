@@ -5,6 +5,7 @@ function App($scope) {
  $scope.loader = false;
  $scope.infoCard = false;
  $scope.loadingTitle = "Searching for Company Data...";
+ $scope.bigScore = false;
 
  // Company and finance data
  $scope.company = '';
@@ -17,6 +18,7 @@ function App($scope) {
  $scope.employeeChange = 0;
  $scope.founded = 0;
  $scope.industries = '';
+ $scope.powerScore = 0;
 
  // Sentiment per year
  $scope.yr17 = 0.0;
@@ -169,7 +171,23 @@ function App($scope) {
     });
 
     console.log($scope.sentimentArray);
+    finalScore();
  };
+
+ function finalScore() {
+   $scope.bigScore = true;
+   var fundingScore = $scope.total_funding / (100000*(2017-$scope.founded));
+   var marketScore = 100*($scope.yr17-0.9);
+   if ($scope.employeeChange <= 0) {
+     index = -1
+   } else {
+     index = 1
+   }
+   var employeeScore = index * (1 + ($scope.employeeChange / 100))^5;
+
+   var mainScore = fundingScore + marketScore + employeeScore;
+   $scope.powerScore = mainScore;
+ }
 
 
 

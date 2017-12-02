@@ -27,6 +27,10 @@
     <button type="button" class="btn btn-outline-primary btn-pill btn-lg" ng-click="getCompanyData()">Analyze Company</button>
   </div>
 
+  <button class="btn btn-outline-secondary" ng-show = "bigScore">
+    Notifications <span class="badge badge-secondary">{{powerScore}}</span>
+  </button>
+
   <div class="info" ng-show="infoCard">
     <div class="card text-center">
       <div class="card-header">
