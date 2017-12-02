@@ -89,8 +89,13 @@ function App($scope) {
 
  $.ajaxSetup({
   headers : {
-    '_Token' : '2D21101015EE4060AD28DB78180FC1D7',
-    'Access-Control-Allow-Origin': 'https://yhaxzzz.herokuapp.com'
+    '_Token' : '2D21101015EE4060AD28DB78180FC1D7'
+    // const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    // const url = "https://globalnews.xignite.com/xGlobalNews.json/GetHistoricalMarketHeadlines?StartDate=11/2/2017&EndDate=12/1/2017 HTTP/1.1"; // site that doesn’t send Access-Control-*
+    // fetch(proxyurl + url) // https://cors-anywhere.herokuapp.com/https://example.com
+    // .then(response => response.text())
+    // .then(contents => console.log(contents))
+    // .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
   }
 });
 
