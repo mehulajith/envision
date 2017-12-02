@@ -6,7 +6,7 @@ function App($scope) {
  $scope.infoCard = false;
  $scope.loadingTitle = "Searching for Company Data..."
 
- // Company data
+ // Company and finance data
  $scope.company = '';
  $scope.description = '';
  $scope.employeesNow = 0;
@@ -17,6 +17,9 @@ function App($scope) {
  $scope.employeeChange = 0;
  $scope.founded = 0;
  $scope.industries = '';
+
+ // Industry news
+ $scope.industryNews = [];
 
  //TabCategories
  $scope.Company = true;
@@ -86,33 +89,18 @@ function App($scope) {
 
  }
 
- $.ajaxSetup({
-  headers : {
-    '_Token' : '2D21101015EE4060AD28DB78180FC1D7'
-    // const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    // const url = "https://globalnews.xignite.com/xGlobalNews.json/GetHistoricalMarketHeadlines?StartDate=11/2/2017&EndDate=12/1/2017 HTTP/1.1"; // site that doesn’t send Access-Control-*
-    // fetch(proxyurl + url) // https://cors-anywhere.herokuapp.com/https://example.com
-    // .then(response => response.text())
-    // .then(contents => console.log(contents))
-    // .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-  }
-});
+function marketNews() {
+  $.getJSON('https://newsapi.org/v2/everything?q='+ $scope.industryNews + '&from=2012-01-01&to=2012-31-12&sortBy=popularity&apiKey=96e8a4ea89e24a5aa48ed02ff80f7a2a', function(news) {
+    console.log(news);
+    $scope.industryNews = news.articles[];
 
-$.getJSON('https://globalnews.xignite.com/xGlobalNews.json/GetHistoricalMarketHeadlines?StartDate=11/2/2017&EndDate=12/1/2017 HTTP/1.1', function(json) {
+  });
+}
 
-  alert("Success");
-  console.log(json);
-});
+function marketNewsAnalysis() {
+  $.post('https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21', function(data) {
 
- // function industryNews() {
- //   $.getJSON('https://globalnews.xignite.com/xGlobalNews.json/GetHistoricalMarketHeadlines?StartDate=11/2/2017&EndDate=12/1/2017 HTTP/1.1', function(news) {
- //     $.ajax({
- //       '_Token': '2D21101015EE4060AD28DB78180FC1D7';
- //     });
- //
- //     conosle.log(news);
- //
- //   });
- // }
+  })
+}
 
 };
