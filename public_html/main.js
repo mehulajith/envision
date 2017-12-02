@@ -53,25 +53,28 @@ function App($scope) {
 
  }
 
- };
+ $.ajaxSetup({
+  headers : {
+    '_Token' : '2D21101015EE4060AD28DB78180FC1D7',
+    'Access-Control-Allow-Origin':
+  }
+});
 
- // function doSearch() {
- //     ajax.open("GET", "https://autocomplete.clearbit.com/v1/companies/suggest?query=:" + input.value.trim(), true);
- //         ajax.onload = function() {
- //             var sHTML = '';
- //       console.log(ajax.responseText);
- //             JSON.parse(ajax.responseText).map(function(i) {
+$.getJSON('https://globalnews.xignite.com/xGlobalNews.json/GetHistoricalMarketHeadlines?StartDate=11/2/2017&EndDate=12/1/2017 HTTP/1.1', function(json) {
+
+  alert("Success");
+  console.log(json);
+});
+
+ // function industryNews() {
+ //   $.getJSON('https://globalnews.xignite.com/xGlobalNews.json/GetHistoricalMarketHeadlines?StartDate=11/2/2017&EndDate=12/1/2017 HTTP/1.1', function(news) {
+ //     $.ajax({
+ //       '_Token': '2D21101015EE4060AD28DB78180FC1D7';
+ //     });
  //
- //         var logoArray = [i.logo]
- //         //
- //         // $scope.name = i.name
- //         // $scope.domain = i.domain
- //         // $scope.logo = i.logo
+ //     conosle.log(news);
  //
- //         console.log(logoArray);
- //
- //             });
- //             // result.innerHTML = sHTML;
- //         };
- //         ajax.send();
+ //   });
  // }
+
+};
