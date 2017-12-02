@@ -162,7 +162,7 @@ function App($scope) {
      console.log(res);
      console.log(res.results);
 
-     $scope.yr17 = res.results;
+     $scope.yr17 = res;
 
      $scope.$apply();
 
@@ -170,5 +170,7 @@ function App($scope) {
 
     console.log($scope.sentimentArray);
  };
+
+
 
 }
