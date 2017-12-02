@@ -9,7 +9,6 @@
     "default_icon": "icon_small.png",
     "default_popup": "index.html"
   },
-
   "permissions": [
     "tabs"
   ]
