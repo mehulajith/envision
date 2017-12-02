@@ -1,10 +1,10 @@
 function App($scope) {
  $scope.placeholder = 4;
- $scope.logo_url = ""
- $scope.currentURL = "yooo"
+ $scope.logo_url = "";
+ $scope.currentURL = "yooo";
  $scope.loader = false;
  $scope.infoCard = false;
- $scope.loadingTitle = "Searching for Company Data..."
+ $scope.loadingTitle = "Searching for Company Data...";
 
  // Company and finance data
  $scope.company = '';
@@ -19,10 +19,6 @@ function App($scope) {
  $scope.industries = '';
 
  // Sentiment per year
- $scope.yr13 = 0.0;
- $scope.yr14 = 0.0;
- $scope.yr15 = 0.0;
- $scope.yr16 = 0.0;
  $scope.yr17 = 0.0;
 
  // Industry news
@@ -61,7 +57,6 @@ function App($scope) {
     }, 2000);
 
     $scope.$apply();
-
  };
 
  // When key up
@@ -95,64 +90,84 @@ function App($scope) {
       $scope.$apply();
 
       var industry = '';
-      if (.contains($scope.industries, 'enterprise software' || 'enterprise' || 'b2b' || 'saas' || 'machine learning' || 'security')) {
-        industry == 'saas';
+
+      var saas = ['enterprise software', 'enterprise', 'b2b', 'saas', 'machine learning', 'security', 'software development'];
+      var fintech = ['finance', 'money', 'fintech', 'market research', 'payments', 'banking', 'bitcoin'];
+      var ecommerce = ['retail', 'e-commerce', 'marketplace', 'fashion'];
+      var ai = ['artificial intelligence', 'ai', 'neural networks'];
+      var healthcare = ['healthcare', 'healthcare providers', 'medical devices', 'pharmaceuticals']
+
+      var findOne = function (haystack, arr) {
+          return arr.some(function (v) {
+              return haystack.indexOf(v) >= 0;
+          });
+      };
+
+      if (findOne($scope.industries, saas) == true) {
+        industry = 'saas';
+      } else if (findOne($scope.industries, fintech) == true) {
+        industry = 'fintech';
+      }  else if (findOne($scope.industries, ecommerce) == true) {
+        industry = 'e-commerce';
+      }  else if (findOne($scope.industries, ai) == true) {
+        industry = 'ai%20startup';
+      }  else if (findOne($scope.industries, healthcare) == true) {
+        industry = 'healthcare%20tech';
       }
-      else if (.contains($scope.industries, 'finance' || 'money' || 'fintech' || 'market research' || 'payments' || 'banking' || 'bitcoin')) {
-        industry == 'fintech';
-      }
-      else if (.contains($scope.industries, 'retail' || 'e-commerce' || 'marketplace' || 'fashion')) {
-        industry == 'e-commerce';
-      }
-      else if (.contains($scope.industries, 'artificial intelligence' || 'AI' || 'neural networks')) {
-        industry == 'ai%20startup';
-      }
-      else if (.contains($scope.industries, 'healthcare' || 'healthcare providers' || 'medical devices' || 'pharmaceuticals')) {
-        industry == 'healthcare%20tech';
-      }
+
+      // if (_.contains($scope.industries, 'enterprise software' || 'enterprise' || 'b2b' || 'saas' || 'machine learning' || 'security')) {
+      //   industry == 'saas';
+      // }
+      // else if (_.contains($scope.industries, 'finance' || 'money' || 'fintech' || 'market research' || 'payments' || 'banking' || 'bitcoin')) {
+      //   industry == 'fintech';
+      // }
+      // else if (_.contains($scope.industries, 'retail' || 'e-commerce' || 'marketplace' || 'fashion')) {
+      //   industry == 'e-commerce';
+      // }
+      // else if (_.contains($scope.industries, 'artificial intelligence' || 'AI' || 'neural networks')) {
+      //   industry == 'ai%20startup';
+      // }
+      // else if (_.contains($scope.industries, 'healthcare' || 'healthcare providers' || 'medical devices' || 'pharmaceuticals')) {
+      //   industry == 'healthcare%20tech';
+      // };
+      //
+      // console.log(industry);
 
       marketNews(industry);
     });
 
- }
+ };
 
-function marketNews(industry) {
-  for (x in ['2013', '2014', '2015', '2016', '2017']) {
-  $.getJSON('https://newsapi.org/v2/everything?q='+ industry + '&from=' + x + '-01-01&to=' + x + '-01-12&sortBy=popularity&apiKey=96e8a4ea89e24a5aa48ed02ff80f7a2a', function(news) {
-    console.log(news);
-    // $scope.industryNews = news.articles[];
-    marketNewsAnalysis(news.articles, x);
-  });
-  }
+  function marketNews(industry) {
+    $.getJSON('https://newsapi.org/v2/everything?q='+ 'fintech%20industry' + '&sortBy=popularity&language=en&apiKey=96e8a4ea89e24a5aa48ed02ff80f7a2a', function(news) {
+      console.log(news);
+      // $scope.industryNews = news.articles[];
+      // setTimeout(function () {
+      //   console.log('waiting...');
+      // }, 1000);
+
+      marketNewsAnalysis(news.articles);
+
+    });
+  };
+
+ function marketNewsAnalysis(data) {
+   $.post(
+     'https://apiv2.indico.io/sentiment',
+     JSON.stringify({
+       'api_key': "b4f6e45ef5da987fb05dd30a800f85fc",
+       'data': JSON.stringify(data),
+     })
+   ).then(function(res) {
+     console.log(res);
+
+     $scope.yr17 = res;
+
+     $scope.$apply();
+
+    });
+
+    console.log($scope.sentimentArray);
+ };
+
 }
-
-function marketNewsAnalysis(data, x) {
-  $.post(
-    'https://apiv2.indico.io/sentiment',
-    JSON.stringify({
-      'api_key': "b4f6e45ef5da987fb05dd30a800f85fc",
-      'data': JSON.stringify(data),
-    })
-  ).then(function(res) {
-    console.log(res)
-
-    if (x == '2013') {
-      $scope.yr13 = res
-    } else if (x == '2014') {
-      $scope.yr14 = res
-    } else if (x == '2015') {
-      $scope.yr15 = res
-    } else if (x == '2016') {
-      $scope.yr16 = res
-    } else if (x == '2017') {
-      $scope.yr17 = res
-    }
-
-    $scope.$apply();
-
-   });
-}
-
-
-
-};

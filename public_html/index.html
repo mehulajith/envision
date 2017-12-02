@@ -5,6 +5,7 @@
   <title>Envision</title>
 
   <script src="http://code.angularjs.org/angular-1.0.0rc3.min.js"></script>
+  <script src="assets/underscore.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   <link rel="stylesheet" type = "text/css" href = "style.css">
   <link rel="stylesheet" type = "text/css" href = "assets/shards.min.css">
@@ -31,19 +32,19 @@
       <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
           <li class="nav-item">
-            <a class="nav-link " href="#" ng-click="companyTab()">Company</a>
+            <a class="nav-link " href="#" ng-click="companyTab()"><b>Company</b></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="#" ng-click="fundingTab()">Funding</a>
+            <a class="nav-link " href="#" ng-click="fundingTab()"><b>Funding</b></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="#" ng-click="marketTab()">Market</a>
+            <a class="nav-link " href="#" ng-click="marketTab()"><b>Market</b></a>
           </li>
         </ul>
       </div>
       <div class="card-body" ng-show="Company">
         <img src="{{logo_url}}" ng-show="logo_url" width="100px" style="margin-bottom: 15px;">
-        <h5 class="card-title" style="color: #42cef4">{{company}}</h5>
+        <h5 class="card-title" style="color: #563fff">{{company}}</h5>
 
         <h5 class="card-title">Founded in</h5>
         <p class="card-text">{{founded}}</p>
@@ -146,7 +147,6 @@
 </body>
 
   <script src="assets/shards.min.js"></script>
-  <script src="assets/underscore.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
