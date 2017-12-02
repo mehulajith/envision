@@ -16,7 +16,7 @@
 
 <div class="container" ng-controller="App">
   <div class="input-group with-addon-icon-right">
-    <input type="text" class="form-control" placeholder="Username">
+    <input type="text" class="form-control" placeholder="Company Domain">
     <span class="input-group-addon">
         <img src="{{logo_url}}" ng-show="logo_url" width="20px">
     </span>
@@ -42,7 +42,8 @@
         </ul>
       </div>
       <div class="card-body" ng-show="Company">
-        <h5 class="card-title">{{company}}</h5>
+        <img src="{{logo_url}}" ng-show="logo_url" width="100px" style="margin-bottom: 15px;">
+        <h5 class="card-title" style="color: #42cef4">{{company}}</h5>
 
         <h5 class="card-title">Founded in</h5>
         <p class="card-text">{{founded}}</p>
@@ -51,7 +52,7 @@
         <p class="card-text">{{description}}</p>
 
         <h5 class="card-title">Employee Data</h5>
-        <p class="card-text">Currently <b>{{company}}'s headcount is {{employeesNow}}</b></p>
+        <p class="card-text">Currently <b>{{company}}'s employee headcount is {{employeesNow}}</b></p>
         <p class="card-text">6 Months ago it was {{employees6moAgo}}</p>
         <p class="card-text">The headcount has changed {{employeeChange}}%</p>
 
@@ -64,7 +65,7 @@
         <p class="card-text">{{lastfundingdate}}</p>
 
         <h5 class="card-title">Average Funding (per year)</h5>
-        <p class="card-text">{{avgYearlyFunding}}</p>
+        <p class="card-text">${{avgYearlyFunding}}</p>
 
       </div>
       <div class="card-body" ng-show="Market">

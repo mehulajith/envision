@@ -72,14 +72,15 @@ function App($scope) {
       $scope.description = data.description;
       $scope.employeesNow = data.employees;
       $scope.employees6moAgo = data.employees_6_months_ago;
-      $scope.employeeChange = (data.employees - data.employees_6_months_ago) / data.employees_6_months_ago;
+      $scope.employeeChange = ((data.employees - data.employees_6_months_ago) / data.employees_6_months_ago).toFixed(2);
+      $scope.employeeChange = $scope.employeeChange * 100;
       $scope.totalfunding = data.total_funding;
       var lastFunding = data.last_funding_date.substr(0, 4);
       $scope.lastfundingdate = lastFunding;
       var foundedYear = data.est_founding_date.substr(0, 4);
       $scope.founded = foundedYear;
-      var avgFund = data.total_funding / foundedYear;
-      $scope.avgYearlyFunding = avgFund;
+      var avgFund = data.total_funding / (2017 - foundedYear);
+      $scope.avgYearlyFunding = avgFund.toFixed(2);
       $scope.industries = data.industries;
       $scope.$apply();
     });
