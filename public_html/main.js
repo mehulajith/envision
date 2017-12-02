@@ -36,10 +36,6 @@ function App($scope) {
 
  // Getting Data for each tab category
 
-
- };
-
-
  function comanyInfo() {
 
     $.getJSON('https://api.mattermark.com/domains/glide.com/companies?key=34cc41d72b44b5c8ed19ee44361829eeb2b53edcdb030731fef654f6048d26d8', function(data) {
@@ -54,6 +50,8 @@ function App($scope) {
     });
 
  }
+
+ };
 
  // function doSearch() {
  //     ajax.open("GET", "https://autocomplete.clearbit.com/v1/companies/suggest?query=:" + input.value.trim(), true);
@@ -75,5 +73,3 @@ function App($scope) {
  //         };
  //         ajax.send();
  // }
-
-}
