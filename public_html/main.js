@@ -18,6 +18,13 @@ function App($scope) {
  $scope.founded = 0;
  $scope.industries = '';
 
+ // Sentiment per year
+ $scope.yr13 = 0.0;
+ $scope.yr14 = 0.0;
+ $scope.yr15 = 0.0;
+ $scope.yr16 = 0.0;
+ $scope.yr17 = 0.0;
+
  // Industry news
  $scope.industryNews = [];
 
@@ -92,18 +99,42 @@ function App($scope) {
  }
 
 function marketNews(industry) {
-  $.getJSON('https://newsapi.org/v2/everything?q='+ industry + '&from=2017-08-11&to=2017-11-11&sortBy=popularity&apiKey=96e8a4ea89e24a5aa48ed02ff80f7a2a', function(news) {
+  for (x in ['2013', '2014', '2015', '2016', '2017']) {
+  $.getJSON('https://newsapi.org/v2/everything?q='+ industry + '&from=' + x + '-01-01&to=' + x + '-01-12&sortBy=popularity&apiKey=96e8a4ea89e24a5aa48ed02ff80f7a2a', function(news) {
     console.log(news);
     // $scope.industryNews = news.articles[];
-    marketNewsAnalysis(news.articles);
+    marketNewsAnalysis(news.articles, x);
   });
+  }
 }
 
-function marketNewsAnalysis(data) {
-  console.log('ibm');
-  $.post('https://yugnoats:Yhack553-@gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21', data, function(response) {
-    console.log(response);
-  }, 'json');
+function marketNewsAnalysis(data, x) {
+  $.post(
+    'https://apiv2.indico.io/sentiment',
+    JSON.stringify({
+      'api_key': "b4f6e45ef5da987fb05dd30a800f85fc",
+      'data': JSON.stringify(data),
+    })
+  ).then(function(res) {
+    console.log(res)
+
+    if (x == '2013') {
+      $scope.yr13 = res
+    } else if (x == '2014') {
+      $scope.yr14 = res
+    } else if (x == '2015') {
+      $scope.yr15 = res
+    } else if (x == '2016') {
+      $scope.yr16 = res
+    } else if (x == '2017') {
+      $scope.yr17 = res
+    }
+    
+    $scope.$apply();
+
+   });
 }
+
+
 
 };
