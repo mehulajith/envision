@@ -93,7 +93,25 @@ function App($scope) {
       $scope.avgYearlyFunding = avgFund.toFixed(2);
       $scope.industries = data.industries;
       $scope.$apply();
-      marketNews('saas');
+
+      var industry = '';
+      if (.contains($scope.industries, 'enterprise software' || 'enterprise' || 'b2b' || 'saas' || 'machine learning' || 'security')) {
+        industry == 'saas';
+      }
+      else if (.contains($scope.industries, 'finance' || 'money' || 'fintech' || 'market research' || 'payments' || 'banking' || 'bitcoin')) {
+        industry == 'fintech';
+      }
+      else if (.contains($scope.industries, 'retail' || 'e-commerce' || 'marketplace' || 'fashion')) {
+        industry == 'e-commerce';
+      }
+      else if (.contains($scope.industries, 'artificial intelligence' || 'AI' || 'neural networks')) {
+        industry == 'ai%20startup';
+      }
+      else if (.contains($scope.industries, 'healthcare' || 'healthcare providers' || 'medical devices' || 'pharmaceuticals')) {
+        industry == 'healthcare%20tech';
+      }
+
+      marketNews(industry);
     });
 
  }
@@ -129,7 +147,7 @@ function marketNewsAnalysis(data, x) {
     } else if (x == '2017') {
       $scope.yr17 = res
     }
-    
+
     $scope.$apply();
 
    });
