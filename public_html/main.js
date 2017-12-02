@@ -110,7 +110,7 @@ function App($scope) {
       }  else if (findOne($scope.industries, ecommerce) == true) {
         industry = 'e-commerce';
       }  else if (findOne($scope.industries, ai) == true) {
-        industry = 'ai%20startup';
+        industry = 'ai';
       }  else if (findOne($scope.industries, healthcare) == true) {
         industry = 'healthcare%20tech';
       }
@@ -139,7 +139,7 @@ function App($scope) {
  };
 
   function marketNews(industry) {
-    $.getJSON('https://newsapi.org/v2/everything?q='+ 'fintech%20industry' + '&sortBy=popularity&language=en&apiKey=96e8a4ea89e24a5aa48ed02ff80f7a2a', function(news) {
+    $.getJSON('https://newsapi.org/v2/everything?q='+ industry + '%20industry&sortBy=popularity&language=en&apiKey=96e8a4ea89e24a5aa48ed02ff80f7a2a', function(news) {
       console.log(news);
       // $scope.industryNews = news.articles[];
       // setTimeout(function () {
