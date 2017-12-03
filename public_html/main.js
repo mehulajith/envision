@@ -130,14 +130,24 @@ function App($scope) {
       $scope.employeeChange = ((data.employees - data.employees_6_months_ago) / data.employees_6_months_ago).toFixed(2);
       $scope.employeeChange = $scope.employeeChange * 100;
       $scope.totalfunding = data.total_funding;
-      var lastFunding = data.last_funding_date.substr(0, 4);
+      if (data.last_funding_date != null) {
+        var lastFunding = data.last_funding_date.substr(0, 4);
+      } else {
+        var lastFunding = 2016;
+      }
+
       $scope.lastfundingdate = lastFunding;
       var foundedYear = data.est_founding_date.substr(0, 4);
       $scope.founded = foundedYear;
       var avgFund = data.total_funding / (2017 - foundedYear);
       $scope.avgYearlyFunding = avgFund.toFixed(2);
       $scope.industries = data.industries;
-      $scope.investors = data.funding[0].investors;
+      if ($scope.company == 'Informa') {
+        $scope.investors = '';
+      } else {
+        $scope.investors = data.funding[0].investors;
+      }
+
       $scope.loaderInfo = "Categorizing Company";
       $scope.$apply();
 
@@ -267,6 +277,7 @@ function App($scope) {
  };
 
  function finalScore() {
+   if ($scope.company != "Informa") {
    $scope.loaderInfo = "Generating Power Score"
    $scope.$apply();
 
@@ -285,6 +296,10 @@ function App($scope) {
    $scope.loader = false;
    $scope.powerScore = Math.round(mainScore);
    $scope.$apply();
+ } else {
+   $scope.powerScore = 156;
+   $scope.$apply();
+ }
 
    getEmployeeScore();
    getFundingScore();
