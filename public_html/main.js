@@ -178,19 +178,18 @@ function App($scope) {
 
  function finalScore() {
    $scope.bigScore = true;
-   var fundingScore = $scope.total_funding / (100000*(2017-$scope.founded));
+   var fundingScore = ($scope.totalfunding / 100000) / (2017-$scope.founded);
 
-   console.log(fundingScore);
-   // var marketScore = 100*($scope.yr17-0.9);
-   // if ($scope.employeeChange <= 0) {
-   //   index = -1
-   // } else {
-   //   index = 1
-   // }
-   // var employeeScore = index * (1 + ($scope.employeeChange / 100))^5;
-   //
-   // var mainScore = fundingScore + marketScore + employeeScore;
-   // $scope.powerScore = mainScore;
+   var marketScore = 100*($scope.yr17-0.9);
+   if ($scope.employeeChange <= 0) {
+     index = -1
+   } else {
+     index = 1
+   }
+   var employeeScore = index * (1 + ($scope.employeeChange / 100))^5;
+
+   var mainScore = fundingScore + marketScore + employeeScore;
+   $scope.powerScore = mainScore;
  }
 
 }
