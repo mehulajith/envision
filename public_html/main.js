@@ -20,6 +20,13 @@ function App($scope) {
  $scope.industries = '';
  $scope.powerScore = 0;
 
+ // Funding Score
+ $scope.fundingNum = 0.0;
+
+ // Employee Score
+
+ $scope.employeeNum = 0.0;
+
  // Sentiment per year
  $scope.yr17 = 0.0;
 
@@ -152,6 +159,20 @@ function App($scope) {
 
     });
   };
+
+ function getFundingScore() {
+   var calcScore = ($scope.totalfunding / 100000) / (2017-$scope.founded);
+   $scope.fundingNum = calcScore;
+ }
+
+ function getEmployeeScore() {
+   if ($scope.employeeChange <= 0) {
+     index = -1
+   } else {
+     index = 1
+   }
+   var empScore = index * (1 + ($scope.employeeChange / 100))^5;
+ }
 
  function marketNewsAnalysis(data) {
    $.post(
