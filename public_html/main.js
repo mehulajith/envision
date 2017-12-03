@@ -124,7 +124,7 @@ function App($scope) {
       $scope.avgYearlyFunding = avgFund.toFixed(2);
       $scope.industries = data.industries;
       $scope.investors = data.funding[0].investors;
-      $scope.loaderInfo = "Categorizing Company"
+      $scope.loaderInfo = "Categorizing Company";
       $scope.$apply();
 
       var industry = '';
