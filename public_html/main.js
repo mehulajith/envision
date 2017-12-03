@@ -40,7 +40,9 @@ function App($scope) {
  $scope.Market = false;
 
  // CEO Tab
- $scope.ceoTab = true;
+ $scope.ceoName = '';
+ $scope.ceoSkills = '';
+ $scope.ceoTab = false;
  $scope.Leadership = false;
 
 // Tabs
@@ -48,20 +50,32 @@ function App($scope) {
    $scope.Company = true;
    $scope.Funding = false;
    $scope.Market = false;
+   $scope.Leadership = false;
  };
  $scope.fundingTab = function() {
    $scope.Company = false;
    $scope.Funding = true;
    $scope.Market = false;
+   $scope.Leadership = false;
  };
  $scope.marketTab = function() {
    $scope.Company = false;
    $scope.Funding = false;
    $scope.Market = true;
+   $scope.Leadership = false;
+ };
+
+ $scope.leaderTab = function() {
+   $scope.Company = false;
+   $scope.Funding = false;
+   $scope.Market = false;
+   $scope.Leadership = true;
+
  };
 
  $scope.getCompanyData = function() {
    companyInfo();
+
    $scope.loader = true;
 
    setTimeout(function () {
@@ -140,6 +154,22 @@ function App($scope) {
               return haystack.indexOf(v) >= 0;
           });
       };
+
+      if ($scope.company == 'Tesla') {
+        $scope.ceoTab = true;
+        $scope.ceoName = 'Elon Musk';
+        $scope.ceoSkills = 'Musk is also the CEO of SpaceX, founder of PayPal; net worth of $21 billion.';
+      } else if ($scope.company == 'Bench') {
+        $scope.ceoTab = true;
+        $scope.ceoName = 'Ian Crosby';
+        $scope.ceoSkills = 'Crosby was recently named in the Forbes 30 under 30 list in 2016.';
+      } else if ($scope.company == 'Slack') {
+        $scope.ceoTab = true;
+        $scope.ceoName = 'Stewart Butterfield';
+        $scope.ceoSkills = 'Butterfield also founded the popular website Flickr.';
+      }
+
+
 
       if (findOne($scope.industries, saas) == true) {
         industry = 'saas';
