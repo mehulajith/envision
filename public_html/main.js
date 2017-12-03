@@ -107,7 +107,7 @@ function App($scope) {
    console.log('assets/temp.json');
 // 2017 Mattermark Data - https://api.myjson.com/bins/1en3m3
 // 2013 SNAP Data - https://api.myjson.com/bins/jqpbf
-    $.getJSON("https://api.myjson.com/bins/jqpbf", function(data) {
+    $.getJSON('https://api.mattermark.com/domains/' + $('.form-control').val() + '/companies?key=08fc9e666854c0ef577557d4ed0c48b90590c7f25afaf261707157fa332c276a', function(data) {
       console.log(data);
       $scope.company = data.name;
       $scope.description = data.description;
@@ -194,6 +194,9 @@ function App($scope) {
  function getFundingScore() {
    var calcScore = ($scope.totalfunding / 100000) / (2017-$scope.founded);
    $scope.fundingNum = calcScore;
+
+   $scope.$apply();
+
  }
 
  function getEmployeeScore() {
@@ -203,6 +206,11 @@ function App($scope) {
      index = 1
    }
    var empScore = index * (1 + ($scope.employeeChange / 100))^5;
+
+   $scope.employeeNum = empScore;
+
+   $scope.$apply();
+
  }
 
  function marketNewsAnalysis(data) {
@@ -247,6 +255,9 @@ function App($scope) {
    $scope.loader = false;
    $scope.powerScore = Math.round(mainScore);
    $scope.$apply();
+
+   getEmployeeScore();
+   getFundingScore();
  }
 
 }
