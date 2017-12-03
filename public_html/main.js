@@ -4,8 +4,8 @@ function App($scope) {
  $scope.currentURL = "yooo";
  $scope.loader = false;
  $scope.infoCard = false;
- $scope.loadingTitle = "Searching for Company Data...";
  $scope.bigScore = false;
+ $scope.loaderInfo = "Extracting Company Data"
 
  // Company and finance data
  $scope.company = '';
@@ -18,6 +18,7 @@ function App($scope) {
  $scope.employeeChange = 0;
  $scope.founded = 0;
  $scope.industries = '';
+ $scope.investors = '';
  $scope.powerScore = 0;
 
  // Sentiment per year
@@ -30,6 +31,10 @@ function App($scope) {
  $scope.Company = true;
  $scope.Funding = false;
  $scope.Market = false;
+
+ // CEO Tab
+ $scope.ceoTab = true;
+ $scope.Leadership = false;
 
 // Tabs
  $scope.companyTab = function() {
@@ -54,7 +59,6 @@ function App($scope) {
 
    setTimeout(function () {
       $scope.infoCard = true;
-      $scope.loadingText = "Analyzing Data";
       $scope.$apply();
     }, 2000);
 
@@ -73,7 +77,30 @@ function App($scope) {
 
  function companyInfo() {
 
-    $.getJSON('https://api.mattermark.com/domains/' + $('.form-control').val() + '/companies?key=34cc41d72b44b5c8ed19ee44361829eeb2b53edcdb030731fef654f6048d26d8', function(data) {
+   // DO NOT USE BEFORE DEMO
+   // DO NOT USE BEFORE DEMO
+   // 'https://api.mattermark.com/domains/' + $('.form-control').val() + '/companies?key=08fc9e666854c0ef577557d4ed0c48b90590c7f25afaf261707157fa332c276a'
+   // DO NOT USE BEFORE DEMO
+   // DO NOT USE BEFORE DEMO
+
+// {
+//   "name":"Dropbox (2013)",
+//   "descripion":"Snapchat is an image messaging and multimedia mobile application.",
+//   "employees":"221",
+//   "employees_6_months_ago":"180",
+//   "total_funding":"92000000",
+//   "last_funding_date":"2013-03-20",
+//   "est_founding_date":"2011-06-01",
+//   "industries":["mobile", "media", "photosharing","photography","social media"],
+//   "funding": [{
+//         "investors": "Benchmark, IVP, Lightspeed Venture Partners"
+//   }]
+// }
+
+   console.log('assets/temp.json');
+// 2017 Mattermark Data - https://api.myjson.com/bins/1en3m3
+// 2013 SNAP Data - https://api.myjson.com/bins/jqpbf
+    $.getJSON("https://api.myjson.com/bins/jqpbf", function(data) {
       console.log(data);
       $scope.company = data.name;
       $scope.description = data.description;
@@ -89,6 +116,8 @@ function App($scope) {
       var avgFund = data.total_funding / (2017 - foundedYear);
       $scope.avgYearlyFunding = avgFund.toFixed(2);
       $scope.industries = data.industries;
+      $scope.investors = data.funding[0].investors;
+      $scope.loaderInfo = "Categorizing Company"
       $scope.$apply();
 
       var industry = '';
@@ -141,6 +170,8 @@ function App($scope) {
  };
 
   function marketNews(industry) {
+    $scope.loaderInfo = "Analyzing Market"
+    $scope.$apply();
     $.getJSON('https://newsapi.org/v2/everything?q='+ industry + '%20industry&sortBy=popularity&language=en&apiKey=96e8a4ea89e24a5aa48ed02ff80f7a2a', function(news) {
       console.log(news);
       // $scope.industryNews = news.articles[];
@@ -177,6 +208,9 @@ function App($scope) {
  };
 
  function finalScore() {
+   $scope.loaderInfo = "Generating Power Score"
+   $scope.$apply();
+
    $scope.bigScore = true;
    var fundingScore = ($scope.totalfunding / 100000) / (2017-$scope.founded);
 
@@ -189,7 +223,9 @@ function App($scope) {
    var employeeScore = index * (1 + ($scope.employeeChange / 100))^5;
 
    var mainScore = fundingScore + marketScore + employeeScore;
-   $scope.powerScore = mainScore;
+   $scope.loader = false;
+   $scope.powerScore = Math.round(mainScore);
+   $scope.$apply();
  }
 
 }

@@ -1,0 +1,10 @@
+{
+  "name":"Mattermark",
+  "descripion":"Mattermark is on a mission to organize the world's business information. We help dealmakers identify valuable opportunities to do business, with deal intelligence.",
+  "employees":"24",
+  "employees_6_months_ago":"33",
+  "total_funding":"18300000",
+  "last_funding_date":"2016-03-20",
+  "est_founding_date":"2013-06-01",
+  "industries": ["analytics", "consulting and research", "enterprise software", "finance", "machine learning", "market research", "search"]
+}

@@ -30,6 +30,26 @@
     <button type="button" class="btn btn-outline-primary btn-pill btn-lg" ng-click="getCompanyData()">Analyze Company</button>
   </div>
 
+  <div class="loading-section">
+  <div ng-show="loader">
+    <div class="loader loader--style2" title="1">
+      <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         width="40px" height="40px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+      <path fill="#000" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z">
+        <animateTransform attributeType="xml"
+          attributeName="transform"
+          type="rotate"
+          from="0 25 25"
+          to="360 25 25"
+          dur="0.6s"
+          repeatCount="indefinite"/>
+        </path>
+      </svg>
+    </div>
+    <p>{{loaderInfo}}</p>
+  </div>
+  </div>
+
   <button class="btn btn-outline-secondary" ng-show = "bigScore">
     Power Score: <span class="badge badge-secondary">{{powerScore}}</span>
   </button>
@@ -46,6 +66,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link " href="#" ng-click="marketTab()" style="color:#007BFF"><b>Market</b></a>
+          </li>
+          <li class="nav-item" ng-show="ceoTab">
+            <a class="nav-link " href="#" ng-click="leaderTab()" style="color:#007BFF"><b>Leadership</b></a>
           </li>
         </ul>
       </div>
@@ -75,6 +98,9 @@
         <h5 class="card-title">Average Funding (per year)</h5>
         <p class="card-text">${{avgYearlyFunding}}</p>
 
+        <h5 class="card-title">Top Investors</h5>
+        <p class="card-text">{{investors}}</p>
+
       </div>
       <div class="card-body" ng-show="Market">
         <h5 class="card-title">Industry/Tech Info</h5>
@@ -84,26 +110,15 @@
         <p class="card-text">{{yr17}}</p>
 
       </div>
-    </div>
-  </div>
+      <div class="card-body" ng-show="Leadership">
+        <h5 class="card-title">CEO / Co-Founder</h5>
+        <p class="card-text">{{ceoName}}</p>
 
-  <div class="loading-section">
-  <div ng-show="loader">
-    <div class="loader loader--style2" title="1">
-      <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-         width="40px" height="40px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
-      <path fill="#000" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z">
-        <animateTransform attributeType="xml"
-          attributeName="transform"
-          type="rotate"
-          from="0 25 25"
-          to="360 25 25"
-          dur="0.6s"
-          repeatCount="indefinite"/>
-        </path>
-      </svg>
+        <h5 class="card-title">Credentials</h5>
+        <p class="card-text">{{ceoSkills}}</p>
+
+      </div>
     </div>
-  </div>
   </div>
 
 </div>

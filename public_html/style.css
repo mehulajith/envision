@@ -47,8 +47,7 @@ html {
   height: 100px;
   width: 20%;
   text-align: center;
-  padding: 1em;
-  margin: 0 auto 1em;
+  padding-top: 25px;
   display: inline-block;
   vertical-align: top;
 }
