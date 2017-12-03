@@ -33,6 +33,11 @@ html {
 .btn-outline-secondary {
   margin-left: 43%;
   margin-top: 2%;
+  color: black;
+}
+
+.badge-secondary {
+  background-color: red;
 }
 
 .loader{
